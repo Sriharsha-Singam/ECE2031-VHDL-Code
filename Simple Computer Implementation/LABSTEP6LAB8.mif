@@ -1,0 +1,26 @@
+-- Altera Memory Initialization File (MIF)
+
+DEPTH = 1024;
+WIDTH = 16;
+
+ADDRESS_RADIX = HEX;
+DATA_RADIX = HEX;
+
+CONTENT
+  BEGIN
+    [000..3FF] : 0000;  -- Default to NOP
+
+           000 : 4800;  -- Test:	  IN    SWITCHES
+           001 : 080C;  -- 		  STORE INDATA
+           002 : 040C;  -- SHIFTNOW: LOAD INDATA
+           003 : 4C01;  -- 		  OUT   LEDS
+           004 : 4C04;  -- 		  OUT SEVENSEG
+           005 : 3001;  -- 		  SHIFT 1
+           006 : 080C;  -- 		  STORE INDATA
+           007 : 4C02;  -- 		  OUT TIMER
+           008 : 4802;  -- TIME:	IN TIMER
+           009 : 37EC;  -- 		ADDI -20
+           00A : 1C02;  -- 		JPOS SHIFTNOW
+           00B : 1408;  -- 		JUMP TIME
+           00C : 0000;  -- INDATA:	DW &H0000
+  END;
